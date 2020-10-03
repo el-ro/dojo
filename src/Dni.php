@@ -9,9 +9,12 @@ use LengthException;
 
 final class Dni
 {
-    public function __construct()
+    public function __construct(string $dni)
     {
-        throw new LengthException('Too Long');
+        if (strlen($dni) > 9) {
+            throw new LengthException('Too Long');
+        }
+        throw new LengthException('Too Short');
     }
 
 }
