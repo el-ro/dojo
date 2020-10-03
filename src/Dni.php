@@ -13,11 +13,15 @@ final class Dni
     private const VALID_LENGTH = 9;
     public function __construct(string $dni)
     {
-        if (\strlen($dni) !== self::VALID_LENGTH) {
-            throw new LengthException(
-                \strlen($dni) > 9 ? 'Too Long' : 'Too Short');
-        }
+        $this->checkDniHasValidLength($dni);
 
         throw new DomainException('Ends with number');
+    }
+
+    private function checkDniHasValidLength(string $dni): void
+    {
+        if (\strlen($dni) !== self::VALID_LENGTH) {
+            throw new LengthException( 'Too long or too short');
+        }
     }
 }
