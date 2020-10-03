@@ -1,0 +1,29 @@
+{
+    "name": "elro/dojo",
+    "description": "A simple space to practice testing",
+    "type": "library",
+    "config": {
+      "bin-dir": "bin"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rodrigo Munoz",
+            "email": "r.munoz2387@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ElRo\\Dojo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\ElRo\\Dojo\\": "tests/"
+        }
+    }
+}
