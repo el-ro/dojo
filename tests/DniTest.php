@@ -5,6 +5,7 @@ namespace Tests\ElRo\Dojo;
 
 use DomainException;
 use ElRo\Dojo\Dni;
+use InvalidArgumentException;
 use LengthException;
 use PHPUnit\Framework\TestCase;
 
@@ -36,8 +37,7 @@ final class DniTest extends TestCase
 
         $dni = new Dni('01234567I');
     }
-
-   /*
+    
    public function testShouldFailWhenDniHasLettersInTheMiddle(): void
     {
         $this->expectException(DomainException::class);
@@ -45,5 +45,19 @@ final class DniTest extends TestCase
 
         $dni = new Dni('012AB567R');
     }
-   */
+
+    public function testShouldFailWhenDniStartsWithALetterOtherThanXYZ(): void
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Starts with invalid letter');
+
+        $dni = new Dni('A1234567R');
+    }
+
+    public function testShouldFailWhenInvalidDni(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $dni = new Dni('00000000S');
+    }
+
 }
