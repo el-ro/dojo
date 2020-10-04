@@ -28,4 +28,22 @@ final class DniTest extends TestCase
         $this->expectExceptionMessage('Ends with number');
         $dni = new Dni('012345678');
     }
+
+    public function testShouldFailWhenDniEndsWithAnInvalidLetter(): void
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Ends with invalid letter');
+
+        $dni = new Dni('01234567I');
+    }
+
+   /*
+   public function testShouldFailWhenDniHasLettersInTheMiddle(): void
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Has letters in the middle');
+
+        $dni = new Dni('012AB567R');
+    }
+   */
 }

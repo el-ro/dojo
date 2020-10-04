@@ -7,6 +7,7 @@ namespace ElRo\Dojo;
 
 use DomainException;
 use LengthException;
+use function PHPUnit\Framework\throwException;
 
 final class Dni
 {
@@ -14,8 +15,10 @@ final class Dni
     public function __construct(string $dni)
     {
         $this->checkDniHasValidLength($dni);
-
-        throw new DomainException('Ends with number');
+        if (preg_match('/\d$/', $dni)) {
+            throw new DomainException('Ends with number');
+        }
+        throw new DomainException('Ends with invalid letter');
     }
 
     private function checkDniHasValidLength(string $dni): void
