@@ -15,7 +15,6 @@ final class Dni
     private const VALID_LENGTH = 9;
     public function __construct(string $dni)
     {
-        $this->checkDniHasValidLength($dni);
         if (!preg_match('/^[XYZ\d]\d{7}[^UIOÑ\d]$/u', $dni)) {
             throw new DomainException('Bad format');
         }
