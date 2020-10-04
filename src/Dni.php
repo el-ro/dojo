@@ -7,24 +7,22 @@ namespace ElRo\Dojo;
 
 use DomainException;
 use InvalidArgumentException;
-use LengthException;
-use function PHPUnit\Framework\throwException;
 
 final class Dni
 {
-    private const VALID_LENGTH = 9;
+    private const VALID_DNI_PATTERN = '/^[XYZ\d]\d{7}[^UIOÑ\d]$/u';
+
     public function __construct(string $dni)
     {
-        if (!preg_match('/^[XYZ\d]\d{7}[^UIOÑ\d]$/u', $dni)) {
-            throw new DomainException('Bad format');
-        }
+        $this->checkIsValidDni($dni);
         throw new InvalidArgumentException('Invalid dni');
     }
 
-    private function checkDniHasValidLength(string $dni): void
+    private function checkIsValidDni(string $dni): void
     {
-        if (\strlen($dni) !== self::VALID_LENGTH) {
-            throw new LengthException( 'Too long or too short');
+        if (!preg_match(self::VALID_DNI_PATTERN, $dni)) {
+            throw new DomainException('Bad format');
         }
     }
+
 }
