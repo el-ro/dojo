@@ -16,17 +16,8 @@ final class Dni
     public function __construct(string $dni)
     {
         $this->checkDniHasValidLength($dni);
-        if (preg_match('/\d$/', $dni)) {
-            throw new DomainException('Ends with number');
-        }
-        if (preg_match('/[UÑOI]$/u', $dni)) {
-            throw new DomainException('Ends with invalid letter');
-        }
-        if (!preg_match('/\d{7}.$/', $dni)) {
-            throw new DomainException('Has letters in the middle');
-        }
-        if (!preg_match('/^[XYZ0-9]/', $dni)) {
-            throw new DomainException('Starts with invalid letter');
+        if (!preg_match('/^[XYZ\d]\d{7}[^UIOÑ\d]$/u', $dni)) {
+            throw new DomainException('Bad format');
         }
         throw new InvalidArgumentException('Invalid dni');
     }
