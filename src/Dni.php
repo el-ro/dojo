@@ -11,21 +11,20 @@ use InvalidArgumentException;
 final class Dni
 {
     private const VALID_DNI_PATTERN = '/^[XYZ\d]\d{7}[^UIOÑ\d]$/u';
+    private const CONTROL_LETTER_MAP = 'TRWAGMYFPDXBNJZSQVHLCKE';
+    private const NIE_INITIAL_LETTERS = ['X','Y','Z'];
+    private const NIE_INITIAL_REPLACEMENTS = ['0','1','2'];
+    private const DIVISOR = 23;
+
     private $dni;
 
     public function __construct(string $dni)
     {
         $this->checkIsValidDni($dni);
-        $number = (int) substr($dni,0, -1);
-        $letter = substr($dni,-1);
-        $mod = $number % 23;
-        $map = [
-            0 => 'T',
-            1 => 'R',
-            2 => 'W'
-        ];
+        $mod = $this->calculateModulus($dni);
 
-        if ($letter !== $map[$mod]) {
+        $letter = substr($dni, -1);
+        if ($letter !== self::CONTROL_LETTER_MAP[$mod]) {
             throw new InvalidArgumentException('Invalid dni');
         }
 
@@ -44,4 +43,11 @@ final class Dni
         }
     }
 
+    private function calculateModulus(string $dni): int
+    {
+        $numeric = substr($dni, 0, -1);
+        $number = (int)str_replace(self::NIE_INITIAL_LETTERS, self::NIE_INITIAL_REPLACEMENTS, $numeric);
+
+        return $number % self::DIVISOR;
+    }
 }
