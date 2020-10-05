@@ -77,4 +77,9 @@ final class DniTest extends TestCase
         $this->assertEquals('Y0000000Z', (string) $dni);
     }
 
+    public function testShouldConstructValidDniWithLowerCaseLetter(): void
+    {
+        $dni = new Dni('00000002w');
+        $this->assertEquals('00000002W', (string) $dni);
+    }
 }
