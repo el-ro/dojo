@@ -19,16 +19,16 @@ final class Dni
         $number = (int) substr($dni,0, -1);
         $letter = substr($dni,-1);
         $mod = $number % 23;
+        $map = [
+            0 => 'T',
+            1 => 'R',
+            2 => 'W'
+        ];
 
-        if ($mod === 0 && $letter !=='T') {
+        if ($letter !== $map[$mod]) {
             throw new InvalidArgumentException('Invalid dni');
         }
-        if ($mod === 1 && $letter !=='R') {
-            throw new InvalidArgumentException('Invalid dni');
-        }
-        if ($mod === 2 && $letter !=='W') {
-            throw new InvalidArgumentException('Invalid dni');
-        }
+
         $this->dni = $dni;
     }
 
