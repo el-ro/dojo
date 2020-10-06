@@ -6,7 +6,6 @@ namespace Tests\ElRo\Dojo;
 use DomainException;
 use ElRo\Dojo\Dni;
 use InvalidArgumentException;
-use LengthException;
 use PHPUnit\Framework\TestCase;
 
 final class DniTest extends TestCase

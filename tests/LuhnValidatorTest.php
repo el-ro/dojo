@@ -13,4 +13,10 @@ final class LuhnValidatorTest extends TestCase
         $validator = new LuhnValidator();
         $this->assertTrue($validator->isValid('00000000000'));
     }
+
+    public function testShouldNotValidateAllZerosEndingInOne(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('0000000001'));
+    }
 }
