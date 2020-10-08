@@ -10,10 +10,7 @@ final class LuhnValidator
     public function isValid(string $luhnCode): bool
     {
         $inverted = strrev($luhnCode);
-        if ($inverted[0] !== '0') {
-            return false;
-        }
-        return true;
+        return !($inverted[0] !== '0' || $inverted[2] !== '0');
     }
 
 }
