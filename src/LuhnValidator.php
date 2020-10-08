@@ -10,8 +10,13 @@ final class LuhnValidator
     public function isValid(string $luhnCode): bool
     {
         $inverted = strrev($luhnCode);
-        $oddadded = $inverted[0] + $inverted[2];
-        return $oddadded % 10 === 0;
+        $oddAdded = $this->addOddDigits($inverted);
+        return $oddAdded % 10 === 0;
+    }
+
+    private function addOddDigits(string $inverted): int
+    {
+        return $inverted[0] + $inverted[2] + $inverted[4];
     }
 
 }
