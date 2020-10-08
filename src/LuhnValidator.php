@@ -10,7 +10,8 @@ final class LuhnValidator
     public function isValid(string $luhnCode): bool
     {
         $inverted = strrev($luhnCode);
-        return !($inverted[0] !== '0' || $inverted[2] !== '0');
+        $oddadded = $inverted[0] + $inverted[2];
+        return $oddadded % 10 === 0;
     }
 
 }
