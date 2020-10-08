@@ -16,7 +16,12 @@ final class LuhnValidator
 
     private function addOddDigits(string $inverted): int
     {
-        return $inverted[0] + $inverted[2] + $inverted[4];
+        return $inverted[0]
+            + $inverted[2]
+            + $inverted[4]
+            + $inverted[6]
+            + $inverted[8]
+            + $inverted[10];
     }
 
 }

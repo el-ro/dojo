@@ -17,7 +17,7 @@ final class LuhnValidatorTest extends TestCase
     public function testShouldNotValidateAllZerosEndingInOne(): void
     {
         $validator = new LuhnValidator();
-        $this->assertFalse($validator->isValid('0000000001'));
+        $this->assertFalse($validator->isValid('00000000001'));
     }
 
     public function testShouldNotValidateOneInThirdPositionFromEnding(): void
@@ -36,5 +36,23 @@ final class LuhnValidatorTest extends TestCase
     {
         $validator = new LuhnValidator();
         $this->assertFalse($validator->isValid('00001000000'));
+    }
+
+    public function testShouldConsiderSeventhPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000010000'));
+    }
+
+    public function testShouldConsiderNinthPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000000100'));
+    }
+
+    public function testShouldConsiderEleventhPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000000001'));
     }
 }
