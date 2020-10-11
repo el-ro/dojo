@@ -28,7 +28,7 @@ final class LuhnValidator
     {
         $evenAdded = 0;
         for ($position = 1; $position < 11; $position += 2) {
-            $evenAdded += $inverted[$position];
+            $evenAdded += $inverted[$position] * 2;
         }
 
         return $evenAdded;
