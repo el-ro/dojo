@@ -55,4 +55,34 @@ final class LuhnValidatorTest extends TestCase
         $validator = new LuhnValidator();
         $this->assertFalse($validator->isValid('00000000001'));
     }
+
+    public function testShouldConsiderSecondPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000000010'));
+    }
+
+    public function testShouldConsiderFourthPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000001000'));
+    }
+
+    public function testShouldConsiderSixthPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000100000'));
+    }
+
+    public function testShouldConsiderEighthPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00010000000'));
+    }
+
+    public function testShouldConsiderTenthPosition(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('01000000000'));
+    }
 }
