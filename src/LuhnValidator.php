@@ -28,7 +28,11 @@ final class LuhnValidator
     {
         $evenAdded = 0;
         for ($position = 1; $position < 11; $position += 2) {
-            $evenAdded += $inverted[$position] * 2;
+            $double = $inverted[$position] * 2;
+            if ($double >= 10) {
+                $double = intdiv($double,10) + $double % 10;
+            }
+            $evenAdded += $double;
         }
 
         return $evenAdded;

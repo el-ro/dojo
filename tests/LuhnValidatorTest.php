@@ -85,4 +85,10 @@ final class LuhnValidatorTest extends TestCase
         $validator = new LuhnValidator();
         $this->assertFalse($validator->isValid('01000000000'));
     }
+
+    public function testCreditCardWithOnlySecondDigitFiveIsInvalid(): void
+    {
+        $validator = new LuhnValidator();
+        $this->assertFalse($validator->isValid('00000000050'));
+    }
 }
